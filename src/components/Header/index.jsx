@@ -6,7 +6,10 @@ import { useAuth } from "../../hooks/AuthContext";
 import {api} from '../../service/api'
 import defaultProfile from '../../assets/defaultavatar.png'
 import {useEffect, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 export function Header() {
+    const navigate = useNavigate()
+
     const {logout , user} = useAuth()
      
      const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : defaultProfile 
@@ -30,7 +33,7 @@ export function Header() {
     return(
 
         <Container>
-            <Perfil>
+            <Perfil onClick={() => navigate('/profile')}>
 
                 <button>
                     <img src={avatar} alt="Foto de Perfil" />
