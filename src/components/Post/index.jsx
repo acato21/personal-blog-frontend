@@ -1,11 +1,8 @@
 import { Container, Info, Interaction } from "./style";
 
-import { Modal } from '../Modal'
-
 import { FaRegCommentDots, FaCommentDots } from "react-icons/fa";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { IoMdHeart } from "react-icons/io";
-import { TbPointFilled } from "react-icons/tb";
 
 import {useAuth} from '../../hooks/AuthContext'
 import defaultavatar  from '../../assets/defaultavatar.png'
@@ -20,7 +17,6 @@ export function Post({post_id, content, postIndex, likes, user_array}){
     const [avatar, setAvatar] = useState(avatarURL)
     const [postImage, setPostImage ] = useState(postURL)
     const [wasLiked, setWasLiked]= useState(false)
-    const [openModal, setOpenModal] = useState(false)
 
     async function handleInsideMoreInfo(){
         console.log(post_id)
@@ -53,17 +49,6 @@ export function Post({post_id, content, postIndex, likes, user_array}){
 
         <Container onClick={handleInsideMoreInfo}>
 
-        <Modal isOpen={openModal}> 
-
-            <div id='modal'>
-                <div>
-                    <span>Comentários <TbPointFilled /> </span>
-                    <p>56</p>
-                </div>
-            </div>
-
-        </Modal>
-
             <Info> 
                 <button>
                     <img src={avatar} alt="Foto de Perfil" />
@@ -81,7 +66,7 @@ export function Post({post_id, content, postIndex, likes, user_array}){
             <Interaction>
                 <div>
                     {wasLiked ? <IoMdHeart onClick={handleUnlike}/> : <GoHeart onClick={handleLike}/>} 
-                    <button onClick={() => setOpenModal(true)} ><FaRegCommentDots /></button>
+                    <button><FaRegCommentDots /></button>
                 </div>
                
                 <p>{likes.likes} likes</p>

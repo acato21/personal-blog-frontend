@@ -1,13 +1,13 @@
 import { Container, Content } from "./style";
 
-export function Modal({ isOpen, children }) {
+export function Modal({ isOpen, children, background }) {
 
 if(isOpen){
 
     return(
 
         <Container >
-            <Content>
+            <Content style={{background}}>
                 {children}
             </Content>     
         </Container>
