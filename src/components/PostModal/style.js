@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 export const ContainerModal = styled.div`
+
+    position: relative;
+
     @media(max-width: 450px){
         width: 360px;
     }
@@ -41,7 +44,6 @@ export const ContainerModal = styled.div`
         font-size: 16px;
         text-align: justify;
         
-
     }
     
     #division {
@@ -68,6 +70,23 @@ export const ContainerModal = styled.div`
             font-weight: bold;
 
         }
+
+    }
+
+    #exit {
+
+        position: absolute;
+        width: fit-content;
+        height: fit-content;
+
+        background: transparent;
+        border: none;
+
+        right: 20px;
+        top: 24px;
+
+        font-size: 20px;
+        color: gray;
 
     }
 
@@ -127,6 +146,7 @@ export const Interaction = styled.div`
     justify-content: space-between;
     display: flex;
     align-items: center;
+
     p{
 
         text-align: justify;
@@ -147,4 +167,42 @@ export const Interaction = styled.div`
 
         }
     }
+`;
+
+export const AddComment = styled.div`
+
+    display: flex;
+    width: 100%;
+
+    position: fixed;
+    bottom: 0;
+
+    > input {
+
+        width: 100%;
+        height: 50px;
+
+        padding: 3px;
+        border-radius: 8px 0 0 8px;
+        border: none;
+
+    }
+
+    > button {
+
+        width: 50px;
+        height: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 10px;
+        border-radius: 0 8px 8px 0;
+        border: none;
+
+        background: #1E90FF;    
+
+    }
+
 `;

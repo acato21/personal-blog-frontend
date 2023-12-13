@@ -1,5 +1,6 @@
-import {ContainerModal, Info, Interaction } from './style'
+import {ContainerModal, Info, Interaction, AddComment } from './style'
 import { Commentary } from '../../components/Commentary'
+import { FaPaperPlane } from "react-icons/fa6";
 import defaultavatar from '../../assets/defaultavatar.png'
 import { api } from '../../service/api';
 import { TbPointFilled } from "react-icons/tb";
@@ -32,6 +33,8 @@ export const ModalPost = ({
               <a href="#">lucas1</a>
           </Info>
 
+          <button id='exit' >X</button>
+
          {postURL ? <img src={postURL} alt="Foto do poster" />: console.log('sem foto')}
 
           <p>
@@ -52,6 +55,14 @@ export const ModalPost = ({
             <TbPointFilled />
 
             <span>{comments.length}</span>
+
+            <AddComment>
+
+            <input type="text" placeholder='Adiconar comentário' />
+            <button> <FaPaperPlane /> </button>
+
+
+          </AddComment>
           </div>
           {comments.length > 0 && comments.map(comment => {
             return <Commentary
@@ -60,6 +71,7 @@ export const ModalPost = ({
             content = {comment.content}
             />
           })}
+
 
 
   </ContainerModal>
