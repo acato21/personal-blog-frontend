@@ -1,14 +1,26 @@
 import {ContainerModal, Info, Interaction } from './style'
 import { Commentary } from '../../components/Commentary'
-import avatar from '../../img/perfil.jpg'
-
+import defaultavatar from '../../assets/defaultavatar.png'
+import { api } from '../../service/api';
 import { TbPointFilled } from "react-icons/tb";
 import { IoMdHeart } from "react-icons/io";
 import { useAuth } from '../../hooks/AuthContext'; 
+import { useState } from 'react';
 
-export const ModalPost = () => {
+
+export const ModalPost = ({
+  post_likes,
+  content,
+  comments,
+  postImage,
+  user_post}) => {
   const {user} = useAuth()
-  
+  const avatarURL = user_post.avatar ? `${api.defaults.baseURL}/files/${user_post.avatar}` :  defaultavatar
+  const postURL = postImage ? `${api.defaults.baseURL}/files/${postImage}` :  null
+
+  const [avatar, setAvatar] = useState(avatarURL)
+
+
   return (
         <ContainerModal>
 
@@ -20,10 +32,10 @@ export const ModalPost = () => {
               <a href="#">lucas1</a>
           </Info>
 
-          <img src={avatar} alt="Foto do poster" />
+          <img src={postURL} alt="Foto do poster" />
 
           <p>
-              descricao
+            {content}
           </p>
 
           <Interaction>
@@ -31,17 +43,19 @@ export const ModalPost = () => {
                   <IoMdHeart cursor='pointer' />
               </div>
               
-              <p>26 likes</p>
+              <p>{post_likes} likes</p>
           </Interaction>
 
           <div id='division'>
-            <h6>Comentario</h6>
+            <h6>Comentarios</h6>
             
             <TbPointFilled />
 
-            <span>23</span>
+            <span>{comments.length}</span>
           </div>
-          <Commentary />
+          {comments.length > 0 && comments.map(comment => {
+            return <Commentary />
+          })}
 
 
   </ContainerModal>

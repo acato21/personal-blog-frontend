@@ -17,24 +17,35 @@ export const Feed = ({isOpen})=>{
   const [title, setTile] = useState('')
   const {user, logout} = useAuth()
   const [matrix, setMatrix] = useState([])
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(true)
+
+  const [post_likes, setPost_likes] = useState(0)
+  const [content, setContent] = useState('')
+  const [comments, setComments] = useState([])
+  const [postImage, setPostImage] = useState('')
+  const [user_post, setUserPost] = useState({})
 
   //user_avatar, username, name, post_image content, comments(array), likes
-
-
-
   useEffect(() => {
     async function fetchData(){
       const response = await api.get(`/posts/feed`)
       setMatrix(response.data)
       console.log(response.data)
+      
     } 
     fetchData()
   }, [])
 
-  async function fetchPost(post_id){
+  async function fetchPost(post_id, likes){
     const response = await api.get(`/posts/inside?post_id=${post_id}`)
     console.log(response.data)
+    setPost_likes(likes) 
+    setContent(response.data.content)
+    setComments(response.data.allCommentsInPost) 
+    setPostImage(response.data.post_image_index)  
+    setUserPost(response.data.userData) 
+    setOpenModal(true)
+
   }
 
   useEffect(()=> {
@@ -52,7 +63,13 @@ export const Feed = ({isOpen})=>{
       <div onClick={()=> {
         }} id='modal'>
 
-          <ModalPost />
+          <ModalPost 
+          post_likes
+          content
+          comments
+          postImage
+          user_post
+          />
           
       </div>
 
@@ -73,7 +90,7 @@ export const Feed = ({isOpen})=>{
             user_array={[post.name, post.avatar, post.username]}
             likes = {post.postLikes}
             post_id={post.post_id}
-            onClick={() => fetchPost(post.post_id)} 
+            onClick={() => fetchPost(post.post_id, post.likes)} 
             />
           })
            
