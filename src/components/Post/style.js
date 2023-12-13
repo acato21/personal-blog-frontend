@@ -4,6 +4,9 @@ export const Container = styled.div`
     cursor: pointer;
     @media(max-width: 450px){
         width: 360px;
+        >img{
+            width: 330px;
+        }
     }
     width: 450px;
     margin: auto;
@@ -22,7 +25,7 @@ export const Container = styled.div`
     }
     > img {
         object-fit: cover;
-        width: 350px;
+        width: 300px;
         border-radius: 8px;
         padding-bottom: 10px ;
         border-bottom: 1px solid gray;

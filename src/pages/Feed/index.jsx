@@ -84,7 +84,8 @@ export const Feed = ()=>{
         {
         matrix.map(posts => {
           return posts.map((post, index) => (
-            <section onClick={() => {
+            <section key={post.post_id}
+            onClick={() => {
               fetchPost({post_id : post.post_id, likes : post.postLikes.likes },setOpenModal(true))
               
               

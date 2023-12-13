@@ -4,8 +4,8 @@ export const ContainerModal = styled.div`
     @media(max-width: 450px){
         width: 360px;
     }
-    width: 450px;
-    height: 450px;
+    width: 440px;
+    height: 650px;
     
     margin: 0 auto;
     border-radius: 5px;
@@ -21,12 +21,17 @@ export const ContainerModal = styled.div`
 
     > img {
         object-fit: cover;
-        width: 350px;
+        width: 380px;
         border-radius: 8px;
         border-bottom: 1px solid gray;
         margin: auto;
-    }
 
+    }
+    @media(max-width:430px){
+        >img{
+            width: 320px;
+        }
+    } 
     > p {
 
         border-bottom: 1px solid gray;

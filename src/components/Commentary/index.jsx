@@ -1,8 +1,11 @@
 import { Container, Content } from "./style";
-
+import { api } from "../../service/api";
+import { useAuth } from "../../hooks/AuthContext";
 import perfil from '../../img/perfil.jpg'
+import { useState } from "react";
+export function Commentary({user_id, comment, name}) {
 
-export function Commentary() {
+
 
     return(
 
