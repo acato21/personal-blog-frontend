@@ -37,7 +37,7 @@ export const Feed = ()=>{
     fetchData()
   }, [])
 
-  async function fetchPost(post_id, likes){
+  async function fetchPost({post_id, likes}, callback){
     const response = await api.get(`/posts/inside?post_id=${post_id}`)
     console.log(response.data)
     setPost_likes(likes) 
@@ -46,7 +46,7 @@ export const Feed = ()=>{
     setPostImage(response.data.post_image_index)  
     setUserPost(response.data.userData) 
     
-
+    return callback
   }
 
   useEffect(()=> {
@@ -79,17 +79,15 @@ export const Feed = ()=>{
     <div className="conteudo">
 
        <Content
-    
       >
-
         <AddPost />
-
         {
         matrix.map(posts => {
           return posts.map((post, index) => (
             <section onClick={() => {
-              fetchPost()
-              setOpenModal(true)
+              fetchPost({post_id : post.post_id, likes : post.postLikes.likes },setOpenModal(true))
+              
+              
               }}>
                 <Post
                   key={String(index)}
