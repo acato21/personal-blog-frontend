@@ -56,13 +56,7 @@ export const ModalPost = ({
 
             <span>{comments.length}</span>
 
-            <AddComment>
-
-            <input type="text" placeholder='Adiconar comentário' />
-            <button> <FaPaperPlane /> </button>
-
-
-          </AddComment>
+      
           </div>
           {comments.length > 0 && comments.map(comment => {
             return <Commentary
@@ -72,8 +66,12 @@ export const ModalPost = ({
             />
           })}
 
+          <AddComment>
 
+            <input type="text" placeholder='Adiconar comentário' />
+            <button> <FaPaperPlane /> </button>
 
+          </AddComment>
   </ContainerModal>
   )
 }

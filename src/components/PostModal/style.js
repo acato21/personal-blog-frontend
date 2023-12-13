@@ -172,17 +172,18 @@ export const Interaction = styled.div`
 export const AddComment = styled.div`
 
     display: flex;
-    width: 100%;
+    width: 400px;
+    margin: auto;
 
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    bottom: 10px;
 
     > input {
 
         width: 100%;
         height: 50px;
 
-        padding: 3px;
+        padding: 3px 10px;
         border-radius: 8px 0 0 8px;
         border: none;
 
