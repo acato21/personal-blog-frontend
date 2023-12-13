@@ -122,8 +122,10 @@ export const Interaction = styled.div`
     display: flex;
     align-items: center;
     p{
-        text-align: right;
+
+        text-align: justify;
         font-size: 14px;
+    
     }
     > div {
         display: flex;
