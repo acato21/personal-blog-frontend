@@ -5,8 +5,6 @@ export const Container = styled.div`
     width: 100%;
     min-height: 100vh;
 
-    padding: 10px 64px 0;
-
     background: ${({ theme }) => theme.COLORS.BACKGROUND_800} fixed;
 
     overflow-y: auto;
@@ -19,7 +17,8 @@ export const Content = styled.div`
 background: rgba(120, 120, 120, 0.5);
 padding: 10px;
 border-radius: 8px;
-
+margin: 90px auto;
+width: min(1200px , 90%) ;
 > div:first-child {
 
     display: flex;

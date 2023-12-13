@@ -1,6 +1,6 @@
 import { Container, Content , ButtonBack, Form, Input } from "./style";
 import Perfil from '../../img/perfil.jpg';
-
+import {useNavigate} from 'react-router-dom'
 import { Button } from "../../components/Button";
 import { Modal } from "../../components/Modal";
 
@@ -9,7 +9,7 @@ import { FaPen } from "react-icons/fa";
 import { useState } from "react";
 
 export function ProfileEdit() {
-
+    const navigate = useNavigate()
     const [openModal, setOpenModal] = useState(false)
 
     return(
@@ -31,7 +31,7 @@ export function ProfileEdit() {
         
             <Content>
                 <div>
-                    <ButtonBack> <IoArrowBackSharp color="#dfdfdf"  /> </ButtonBack>
+                    <ButtonBack> <IoArrowBackSharp color="#dfdfdf" onClick={() => navigate('/profile')}  /> </ButtonBack>
                     <ButtonBack onClick={() => setOpenModal(true)}><span>Excluir conta</span> </ButtonBack>
                 </div>
 

@@ -5,7 +5,7 @@ export const Container = styled.div`
     width: 100%;
     min-height: 100vh;
 
-    padding: 20px 64px;
+    padding: 20px 264px;
 
     background: ${({ theme }) => theme.COLORS.BACKGROUND_800} fixed;
 
