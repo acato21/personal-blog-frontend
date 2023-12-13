@@ -178,6 +178,10 @@ export const AddComment = styled.div`
     position: absolute;
     bottom: 10px;
 
+    @media(max-width: 450px){
+        width: 330px;
+    }
+
     > input {
 
         width: 100%;
