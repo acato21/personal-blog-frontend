@@ -10,6 +10,7 @@ import { ModalPost } from '../../components/PostModal'
 import { Modal } from '../../components/Modal'
 import { TbPointFilled } from "react-icons/tb";
 import { IoMdHeart } from "react-icons/io";
+import { AddPost } from '../../components/AddPost'
 
 export const Feed = ({isOpen})=>{
 
@@ -60,9 +61,13 @@ export const Feed = ({isOpen})=>{
       
     <Header />
     <div className="conteudo">
+
        <Content
     
       >
+
+        <AddPost />
+
         {
         matrix.map(posts => {
           return posts.map((post, index) => {
