@@ -1,15 +1,15 @@
 import { Container, Content } from "./style";
 
-export function Modal({ isOpen, children, background }) {
+export function Modal({onClick, isOpen, children, background }) {
 
 if(isOpen){
 
     return(
 
-        <Container >
-            <Content style={{background}}>
+        <Container onClick={onClick}>
+            
                 {children}
-            </Content>     
+               
         </Container>
 
     );

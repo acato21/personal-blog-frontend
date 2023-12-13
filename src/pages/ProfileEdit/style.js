@@ -5,7 +5,7 @@ export const Container = styled.div`
     width: 100%;
     min-height: 100vh;
 
-    padding: 20px 264px;
+
 
     background: ${({ theme }) => theme.COLORS.BACKGROUND_800} fixed;
 
@@ -62,16 +62,16 @@ export const Container = styled.div`
 
 
 export const Content = styled.div`
-
+margin: 90px auto;
 background: rgba(120, 120, 120, 0.5);
 padding: 20px;
 border-radius: 8px;
-
+width: min(1200px , 90%) ;
 > #profile {
 
         height: fit-content;
         width: fit-content;
-
+        cursor: pointer;
         border: none;
         border-radius: 50%;
 
@@ -79,11 +79,13 @@ border-radius: 8px;
         margin: 40px auto 30px;
 
         position: relative;
-
+    #avatar{
+        display: none;
+    }
 > img {
         
-        height: 150px;
-        width: 150px;
+        height: 250px;
+        width: 250px;
         border-radius: 50%;
         filter: brightness(0.5);
         

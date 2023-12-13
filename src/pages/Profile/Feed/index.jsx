@@ -19,8 +19,6 @@ export const Feed = ({isOpen})=>{
   const [matrix, setMatrix] = useState([])
   const [openModal, setOpenModal] = useState(true)
 
-
-  
   useEffect(() => {
     async function fetchData(){
       const response = await api.get(`/posts/feed`)
@@ -30,12 +28,20 @@ export const Feed = ({isOpen})=>{
     fetchData()
   }, [])
 
+  useEffect(()=> {
+
+  })
+
   return (
-    <Container>
+    <Container onClick={()=> {
+      console.log('click')
+      
+    }}>
 
     <Modal isOpen={openModal} > 
 
-      <div id='modal'>
+      <div onClick={()=> {
+        }} id='modal'>
 
           <ModalPost />
           
