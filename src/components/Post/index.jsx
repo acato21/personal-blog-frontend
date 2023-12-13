@@ -10,8 +10,9 @@ import {api} from '../../service/api'
 import { useState, useEffect } from "react";
 
 export function Post({post_id, content, postIndex, likes, user_array}){
+    let name, user_avatar, username;
+    if(user_array) [name, user_avatar, username] = user_array
     
-    const [name, user_avatar, username] = user_array
     const avatarURL = user_avatar ? `${api.defaults.baseURL}/files/${user_avatar}` : defaultavatar 
     const postURL = postIndex ? `${api.defaults.baseURL}/files/${postIndex}` : null
     const [avatar, setAvatar] = useState(avatarURL)

@@ -1,7 +1,7 @@
 import { Container, Content , Button, Info, Posts } from "./style";
 import Perfil from '../../img/perfil.jpg'
 import { PostProfile } from "../../components/Post-profile";
-
+import { Post } from "../../components/Post";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { FaPencilAlt } from "react-icons/fa";
 import { api } from "../../service/api";
@@ -14,20 +14,29 @@ import { useAuth } from "../../hooks/AuthContext";
 
 export function Profile() {
     const {user} = useAuth()
+    console.log(user)
     const avatarURL = user.avatar? `${api.defaults.baseURL}/files/${user.avatar}` : defaultAvatar
     const navigate = useNavigate();
 
     const [avatar, setAvatar] = useState(avatarURL)
     const [userProfileData, setUserProfileData] =useState({})
-
+    const [seguidores , setSeguidores] = useState(0)
+    const [seguindo , setSeguindo] = useState(0)
+    const [posts , setPosts] = useState(0)
+    const [UserPosts, setUserPosts] = useState([])
     
 
     useEffect(() => {
         async function fetchDataProfile(){
             const response = await api.get('/followers/list')
-            console.log(response.data)
-            setUserProfileData(response.data)
+            console.log(response.data.followers)
+            setSeguidores(response.data.followers.length)
+            setSeguindo(response.data.following.length)
+            setPosts(response.data.userCountPosts.length)
             
+            const arrayResponse = await api.get('/posts/postsview')
+
+            setUserPosts(arrayResponse.data)
         }
         fetchDataProfile()
     }, [])//only when opens the page for the first time
@@ -38,34 +47,40 @@ export function Profile() {
         
             <Content>
                 <div>
-                    <Button> <IoArrowBackSharp color="#dfdfdf" onClick={() => navigate(-1)}  /> </Button>
-                    <Button> <FaPencilAlt color="#dfdfdf" /></Button>
+                    <Button> <IoArrowBackSharp color="#dfdfdf" onClick={() => navigate('/')}  /> </Button>
+                    <Button> <FaPencilAlt color="#dfdfdf" onClick={()=> navigate('/profile-edit')} /></Button>
                 </div>
 
                 <div>
-                    <img src={ avatar } alt="Foto de perfil" />
-                    <h2>user.name</h2>
+                    <img src={ avatar } alt="Foto de perfil"  />
+                    <h2>{user.name}</h2>
                     <span><i>@{user.username}</i></span>
                 </div>
 
                 <Info>
 
                     <div>
-                        <span></span>
+                        <span >
+                            {seguindo}
+                        </span>
                         <p><i>Seguindo</i></p>
                     </div>
 
                     <p><i>/</i></p>
 
                     <div>
-                        <span></span>
+                        <span>
+                           {seguidores}
+                        </span>
                         <p><i>Seguidores</i></p>
                     </div>
 
                     <p><i>/</i></p>
 
                     <div>
-                        <span>24</span>
+                        <span>
+                            {posts}
+                        </span>
                         <p><i>Posts</i></p>
                     </div>
 
@@ -76,8 +91,19 @@ export function Profile() {
                     <h6>Posts</h6>
 
                     <div>
-
-                        <PostProfile src={Perfil} />
+                 
+                        {
+                        UserPosts.map((post)=> {
+                            return <Post
+                            key={post.post_id}
+                            content={post.content}
+                            likes={post.likes}
+                            postIndex={post.post_image_index}
+                            user_array={[user.name, user.avatar, user.username]}
+                            />
+                        })
+                        
+                        }
 
                     </div>
                 </Posts>
