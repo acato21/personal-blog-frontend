@@ -55,7 +55,10 @@ export const ModalPost = ({
           </div>
           {comments.length > 0 && comments.map(comment => {
             return <Commentary
-            user ={comment.id} />
+            key={comment.id}
+            user ={comment.id}
+            content = {comment.content}
+            />
           })}
 
 
