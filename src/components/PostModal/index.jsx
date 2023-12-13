@@ -4,9 +4,11 @@ import avatar from '../../img/perfil.jpg'
 
 import { TbPointFilled } from "react-icons/tb";
 import { IoMdHeart } from "react-icons/io";
-
+import { useAuth } from '../../hooks/AuthContext'; 
 
 export const ModalPost = () => {
+  const {user} = useAuth()
+  
   return (
         <ContainerModal>
 

@@ -17,7 +17,11 @@ export const Feed = ({isOpen})=>{
   const [title, setTile] = useState('')
   const {user, logout} = useAuth()
   const [matrix, setMatrix] = useState([])
-  const [openModal, setOpenModal] = useState(true)
+  const [openModal, setOpenModal] = useState(false)
+
+  //user_avatar, username, name, post_image content, comments(array), likes
+
+
 
   useEffect(() => {
     async function fetchData(){
@@ -29,7 +33,8 @@ export const Feed = ({isOpen})=>{
   }, [])
 
   async function fetchPost(post_id){
-    const response = await api.get('/')
+    const response = await api.get(`/posts/inside?post_id=${post_id}`)
+    console.log(response.data)
   }
 
   useEffect(()=> {
