@@ -28,6 +28,10 @@ export const Feed = ({isOpen})=>{
     fetchData()
   }, [])
 
+  async function fetchPost(post_id){
+    const response = await api.get('/')
+  }
+
   useEffect(()=> {
 
   })
@@ -64,7 +68,7 @@ export const Feed = ({isOpen})=>{
             user_array={[post.name, post.avatar, post.username]}
             likes = {post.postLikes}
             post_id={post.post_id}
-            onClick={() => setOpenModal(true)} 
+            onClick={() => fetchPost(post.post_id)} 
             />
           })
            
