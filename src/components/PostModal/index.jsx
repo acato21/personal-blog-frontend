@@ -16,7 +16,7 @@ export const ModalPost = ({
   user_post}) => {
   const {user} = useAuth()
   const avatarURL = user_post.avatar ? `${api.defaults.baseURL}/files/${user_post.avatar}` :  defaultavatar
-  const postURL = postImage ? `${api.defaults.baseURL}/files/${postImage}` :  null
+  const postURL = postImage ? `${api.defaults.baseURL}/files/${postImage}` :  false
 
   const [avatar, setAvatar] = useState(avatarURL)
 
@@ -32,7 +32,7 @@ export const ModalPost = ({
               <a href="#">lucas1</a>
           </Info>
 
-          <img src={postURL} alt="Foto do poster" />
+         {postURL ? <img src={postURL} alt="Foto do poster" />: console.log('sem foto')}
 
           <p>
             {content}

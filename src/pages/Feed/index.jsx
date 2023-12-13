@@ -11,14 +11,14 @@ import { Modal } from '../../components/Modal'
 import { TbPointFilled } from "react-icons/tb";
 import { IoMdHeart } from "react-icons/io";
 
-export const Feed = ({isOpen})=>{
+export const Feed = ()=>{
 
 
   const [title, setTile] = useState('')
   const {user, logout} = useAuth()
   const [matrix, setMatrix] = useState([])
-  const [openModal, setOpenModal] = useState(true)
-
+  const [openModal, setOpenModal] = useState(false)
+  const isOpen = useRef(false)
   const [post_likes, setPost_likes] = useState(0)
   const [content, setContent] = useState('')
   const [comments, setComments] = useState([])
@@ -44,13 +44,13 @@ export const Feed = ({isOpen})=>{
     setComments(response.data.allCommentsInPost) 
     setPostImage(response.data.post_image_index)  
     setUserPost(response.data.userData) 
-    setOpenModal(true)
+    
 
   }
 
   useEffect(()=> {
-
-  })
+    console.log(openModal)
+  }, [openModal])
 
   return (
     <Container onClick={()=> {
@@ -60,15 +60,14 @@ export const Feed = ({isOpen})=>{
 
     <Modal isOpen={openModal} > 
 
-      <div onClick={()=> {
-        }} id='modal'>
+      <div id='modal'>
 
           <ModalPost 
-          post_likes
-          content
-          comments
-          postImage
-          user_post
+          post_likes = {post_likes}
+          content = {content}
+          comments = {comments}
+          postImage = {postImage}
+          user_post = {user_post}
           />
           
       </div>
@@ -82,17 +81,22 @@ export const Feed = ({isOpen})=>{
       >
         {
         matrix.map(posts => {
-          return posts.map((post, index) => {
-            return <Post
-            key={String(index)}
-            content={post.content}
-            postIndex={post.post_image_index}
-            user_array={[post.name, post.avatar, post.username]}
-            likes = {post.postLikes}
-            post_id={post.post_id}
-            onClick={() => fetchPost(post.post_id, post.likes)} 
-            />
-          })
+          return posts.map((post, index) => (
+            <section onClick={() => {
+              fetchPost()
+              setOpenModal(true)
+              }}>
+                <Post
+                  key={String(index)}
+                  content={post.content}
+                  postIndex={post.post_image_index}
+                  user_array={[post.name, post.avatar, post.username]}
+                  likes = {post.postLikes}
+                  post_id={post.post_id}
+                  />
+            </section>
+          )   
+          )
            
         })
 

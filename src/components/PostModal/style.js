@@ -5,16 +5,17 @@ export const ContainerModal = styled.div`
         width: 360px;
     }
     width: 450px;
-    height: 700px;
-    margin: auto;
+    height: 450px;
+    
+    margin: 0 auto;
     border-radius: 5px;
     box-shadow: 0 1px 2px -1px rgb(0,0,0, 0.3);
-    padding: 100px 20px 20px;
+    padding: 20px 20px 20px;
     background: #dfdfdf;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     overflow-y: auto;
     gap: 14px;
 
