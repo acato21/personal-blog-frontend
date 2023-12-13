@@ -5,7 +5,7 @@ export const Container = styled.div`
     position: fixed;
 
     z-index: 1000;
-
+    
     top: 0;
     right: 0;
     left: 0;
@@ -22,7 +22,8 @@ export const Container = styled.div`
 export const Content = styled.div`
     
     display: flex;
-    
+    width: 540px;
+    height: 600px;
     background: white;
     border-radius: 8px;
     padding: 20px;

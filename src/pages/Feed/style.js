@@ -11,7 +11,10 @@ export const Container = styled.div`
 
     align-items: center;
     
-
+    #modal{
+        position: absolute;
+        z-index: 1111;
+    }
 `;
 
 export const Content = styled.div`
